@@ -1,0 +1,34 @@
+:root{
+  --green-700: #006d33;
+  --green-500: #00994d;
+  --green-200: #dff7e6;
+  --white: #ffffff;
+  --muted: #6b7280;
+}
+*{box-sizing:border-box}
+body{font-family:Inter, system-ui, Arial, sans-serif;margin:0;background:var(--green-200);color:var(--green-700)}
+.top{background:linear-gradient(90deg,var(--green-700),var(--green-500));color:var(--white);padding:18px}
+.top h1{margin:8px 0 0 0;font-weight:600;text-transform:uppercase;letter-spacing:1px;text-align:center}
+.favicon-wrap{display:flex;justify-content:center}
+.favicon-wrap img{width:64px;height:64px;border-radius:8px;background:var(--white);padding:6px}
+.container{padding:18px;display:grid;grid-template-columns:1fr;gap:18px;max-width:1200px;margin:18px auto}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.card{background:var(--white);border-radius:10px;padding:14px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+.card table{width:100%;border-collapse:collapse}
+.card table th{text-align:left;padding:6px 8px;color:var(--green-700)}
+.card table td{padding:6px 8px}
+.pct-bar{height:10px;background:#e6f6ec;border-radius:6px;overflow:hidden}
+.pct-fill{height:100%;background:var(--green-500);border-radius:6px}
+.card h3{margin:0 0 8px 0;color:var(--green-700);font-size:14px}
+.value{font-size:28px;color:var(--green-500);margin:8px 0}
+.charts{display:grid;grid-template-columns:1fr;gap:12px}
+.chart{height:360px}
+.chart#heatmapChart{height:520px}
+.chart#topBooksChart{height:360px}
+ol{padding-left:18px;margin:6px 0}
+
+@media(min-width:900px){
+  .charts{grid-template-columns:2fr 1fr}
+  /* make heatmap span both columns on wide screens */
+  .chart#heatmapChart{grid-column:1 / -1}
+}

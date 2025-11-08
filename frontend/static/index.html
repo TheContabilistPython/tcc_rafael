@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>dashboard biblioteca uffs</title>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="favicon-wrap">
+        <img id="faviconImg" src="/favicon.ico" alt="favicon" />
+      </div>
+      <h1>dashboard biblioteca uffs</h1>
+    </header>
+
+    <main class="container">
+      <section class="metrics">
+        <div class="card" id="currentlyLoaned">
+          <h3>Livros atualmente emprestados</h3>
+          <p class="value" id="currentlyLoanedVal">-</p>
+        </div>
+        <div class="card" id="uniqueBorrowers">
+          <h3>Pessoas diferentes que emprestaram</h3>
+          <p class="value" id="uniqueBorrowersVal">-</p>
+        </div>
+        <div class="card" id="topPerson">
+          <h3>Pessoa com mais empréstimos</h3>
+          <p class="value" id="topPersonVal">-</p>
+        </div>
+        <div class="card" id="totalRecords">
+          <h3>Total de registros</h3>
+          <p class="value" id="totalRecordsVal">-</p>
+        </div>
+
+        <div class="card" id="avgLoan">
+          <h3>Tempo médio de empréstimo (dias)</h3>
+          <p class="value" id="avgLoanVal">-</p>
+        </div>
+        <div class="card" id="avgDelay">
+          <h3>Tempo médio de atraso (dias)</h3>
+          <p class="value" id="avgDelayVal">-</p>
+        </div>
+      </section>
+
+      <section class="charts">
+        <div class="chart card" id="tsChart"></div>
+  <!-- removed Obras mais emprestadas (Top 10) as requested -->
+        <div class="chart card" id="heatmapChart"></div>
+
+        <div class="card" id="topPeople">
+          <h3>Top 10 pessoas (mais empréstimos)</h3>
+          <ol id="topPeopleList"></ol>
+        </div>
+
+        <div class="card" id="delayTables">
+          <h3>Métrica de atraso</h3>
+          <div id="delayByGenre"></div>
+          <div id="delayByAge"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
