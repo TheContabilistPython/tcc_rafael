@@ -81,7 +81,11 @@ async function init(){
 
 // small wrapper to account for different base path
 async function fetchJSON(path){
-  const url = window.location.origin.startsWith('http://localhost:3000') ? `http://localhost:8000/api${path}` : `/api${path}`;
+  // Prefer explicit window.API_BASE (set in index.html). Fallback to localhost:8000 when developing,
+  // otherwise use same-origin /api (when backend is proxied).
+  const base = (typeof window.API_BASE !== 'undefined' && window.API_BASE) ? window.API_BASE : (window.location.origin.startsWith('http://localhost') ? 'http://localhost:8000' : '');
+  const prefix = base ? base.replace(/\/$/, '') : '';
+  const url = prefix + '/api' + path;
   const res = await fetch(url);
   return res.json();
 }

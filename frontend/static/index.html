@@ -7,6 +7,12 @@
     <link rel="icon" href="/favicon.ico" />
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+    <script>
+      // When the frontend is accessed remotely (for example via VPN IP),
+      // set API_BASE to the same host but backend port 8000 so fetches go to the backend.
+      // Example: if user opens http://26.99.107.72:3000 then API_BASE -> http://26.99.107.72:8000
+      window.API_BASE = window.location.protocol + '//' + window.location.hostname + ':8000';
+    </script>
   </head>
   <body>
     <header class="top">
