@@ -27,7 +27,26 @@ def serve_static(port, directory):
         print(f"Erro: diretório estático não encontrado: {directory}")
         sys.exit(1)
     os.chdir(directory)
-    handler = http.server.SimpleHTTPRequestHandler
+    # allow serving a favicon from the repository root (one level up)
+    favicon_path = os.path.abspath(os.path.join(directory, '..', 'favicon.ico'))
+
+    class CustomHandler(http.server.SimpleHTTPRequestHandler):
+        def do_GET(self):
+            if self.path == '/favicon.ico' and os.path.exists(favicon_path):
+                try:
+                    with open(favicon_path, 'rb') as f:
+                        data = f.read()
+                    self.send_response(200)
+                    self.send_header('Content-type', 'image/x-icon')
+                    self.send_header('Content-Length', str(len(data)))
+                    self.end_headers()
+                    self.wfile.write(data)
+                except Exception:
+                    self.send_error(404)
+                return
+            return super().do_GET()
+
+    handler = CustomHandler
     with socketserver.TCPServer(("", port), handler) as httpd:
         url = f"http://localhost:{port}"
         print(f"Servindo arquivos estáticos em {url} (ctrl-c para parar)")
