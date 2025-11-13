@@ -18,11 +18,7 @@ async function init(){
   document.getElementById('totalRecordsVal').textContent = metrics.total_records ?? '-';
   document.getElementById('uniqueBorrowersVal').textContent = metrics.unique_borrowers ?? '-';
   document.getElementById('currentlyLoanedVal').textContent = metrics.currently_loaned ?? '-';
-  if(metrics.top_person && metrics.top_person.person){
-    document.getElementById('topPersonVal').textContent = `${metrics.top_person.person} (${metrics.top_person.count})`;
-  } else {
-    document.getElementById('topPersonVal').textContent = '-';
-  }
+  // 'Pessoa com mais empréstimos' card removed from UI; no DOM update needed here.
 
   // average delay: compute from delay_by_genre overall average if present
   let avgDelay = '-';
